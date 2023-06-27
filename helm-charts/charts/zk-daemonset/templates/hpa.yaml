@@ -2,14 +2,14 @@
 apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
-  name: {{ include "zk-operator.fullname" . }}
+  name: {{ include "zk-daemonset.fullname" . }}
   labels:
-    {{- include "zk-operator.labels" . | nindent 4 }}
+    {{- include "zk-daemonset.labels" . | nindent 4 }}
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
     kind: Deployment
-    name: {{ include "zk-operator.fullname" . }}
+    name: {{ include "zk-daemonset.fullname" . }}
   minReplicas: {{ .Values.autoscaling.minReplicas }}
   maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   metrics:
