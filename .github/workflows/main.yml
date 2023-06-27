@@ -57,4 +57,4 @@ jobs:
              upgrade $APP_NAME \
               -f ./helm-charts/$ENV.yaml ./helm-charts/ \
               --create-namespace \
-              --namespace $zerok-cli 
+              --namespace zerok-cli 
