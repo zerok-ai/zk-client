@@ -51,6 +51,7 @@ jobs:
 
       - name: Deploy
         run: |-
+             helm dependency build helm-charts
              helm --install  \
              --set=image.tag=latest \
              upgrade $APP_NAME \
