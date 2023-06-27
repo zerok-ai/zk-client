@@ -3,6 +3,6 @@ kind: Secret
 metadata:
   name: cluster-info
 type: Opaque
-data:
+stringData:
   clusterKey: {{ index .Values "global" "data" "cluster_key" }}
   apiKey: {{ index .Values "global" "data" "PX_API_KEY" }}
