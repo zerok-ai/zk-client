@@ -8,11 +8,6 @@ data:
        dbs:
          scenarios: 6   
          traces: 1
-    redis:
-      host: zerok-cli-redis-master.zk-client.svc.cluster.local
-      port: 6379
-      readTimeout: 20
-      db: 7
 kind: ConfigMap
 metadata:
   labels:
