@@ -1,21 +1,23 @@
 # Default values for curbiq.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
-zerok-cli:
-  image: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zerok-cli"
-  tag: "latest"  
-zk-scenario-manager:
-  enabled: true
-  image: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-scenario-manager"
-  tag: "ead01cedc1f6bcb77d07d17e5e4c424593c4d96d"
-zk-daemonset:
-  enabled: true
-  image: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-daemonset"
-  tag: "4163e639a976ce18f3c18b208c9be181a82b61cd"
-redis:
-  enabled: true
-  architecture: "standalone"
-
+global:
+  zerok-cli:
+    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zerok-cli"
+    tag: "latest"  
+  zk-scenario-manager:
+    enabled: true
+    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-scenario-manager"
+    tag: "ead01cedc1f6bcb77d07d17e5e4c424593c4d96d"
+  zk-daemonset:
+    enabled: true
+    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-daemonset"
+    tag: "4163e639a976ce18f3c18b208c9be181a82b61cd"
+  redis:
+    enabled: true
+    architecture: "standalone"
+  image:
+    pullPolicy: IfNotPresent
 
 
 
