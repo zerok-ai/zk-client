@@ -22,6 +22,7 @@ global:
 redis:
   enabled: true
   architecture: "standalone"
+  nameOverride: redis
   auth:
     enabled: false
 
