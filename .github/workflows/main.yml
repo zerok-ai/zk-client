@@ -13,6 +13,8 @@ env:
   GKE_ZONE : ${{ vars.GKE_ZONE }}
   PROJECT_ID:  ${{ vars.PROJECT_ID }}
   APP_NAME : zerok-cli
+  PX_API_KEY: ${{ secrets.PX_API_KEY }}
+  PX_CLUSTER_NAME: ${{ vars.PX_CLUSTER_NAME }}
   
 jobs:
   deploy:
@@ -51,10 +53,4 @@ jobs:
 
       - name: Deploy
         run: |-
-             helm dependency build helm-charts
-             helm --install  \
-             --set=image.tag=latest \
-             upgrade $APP_NAME \
-              -f ./helm-charts/$ENV.yaml ./helm-charts/ \
-              --create-namespace \
-              --namespace zerok-cli 
+            ./run.sh PX_CLUSTER_NAME=$PX_CLUSTER_NAME PX_API_KEY=$PX_API_KEY
