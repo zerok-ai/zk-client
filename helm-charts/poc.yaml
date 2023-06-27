@@ -15,10 +15,14 @@ global:
     tag: "bd29f4184a68575838709c285201b6e88e0dc1b2"
   image:
     pullPolicy: IfNotPresent
+  data:
+    PX_API_KEY: ""
+    cluster_key: ""
 
 redis:
   enabled: true
   architecture: "standalone"
+
 
 replicaCount: 1
 

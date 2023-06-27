@@ -20,12 +20,12 @@ then
 fi
 
 echo "checking kube api connectivity"
-#if ! kubectl cluster-info; then
-#    echo "Unable to connect to kube api. ERR #3"
-#    exit 1
-#else
-#    echo "kube api reachable"
-#fi
+if ! kubectl cluster-info; then
+    echo "Unable to connect to kube api. ERR #3"
+    exit 1
+else
+    echo "kube api reachable"
+fi
 
 
 echo "checking helm binary"
@@ -56,8 +56,9 @@ fi
 
 helm dependency update helm-charts
  helm --install  \
- --set=image.tag=latest \
+ --set=global.data.cluster_key=$cluster_key \
+ --set=global.data.PX_API_KEY=$PX_API_KEY \
  upgrade $APP_NAME \
   -f ./helm-charts/$ENV.yaml ./helm-charts/ \
   --create-namespace \
-  --namespace zerok-cli 
+  --namespace zk-client 
