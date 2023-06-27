@@ -4,14 +4,17 @@
 zerok-cli:
   image: us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zerok-cli
   tag: latest   
-zk-scenario-manager
+zk-scenario-manager:
+  enabled: true
   image: us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-scenario-manager
   tag: ead01cedc1f6bcb77d07d17e5e4c424593c4d96d
-zk-operator
+zk-operator:
+  enabled: true
   image: us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-operator
   tag: 4163e639a976ce18f3c18b208c9be181a82b61cd
-redis
-  image: 
+redis:
+  enabled: true
+  architecture: standalone
 
 
 
@@ -91,10 +94,4 @@ nodeSelector: {}
 tolerations: []
 
 affinity: {}
-zk-operator:
-  enabled: true
-zk-scenario-manager:
-  enabled: true
-redis:
-  enabled: true
-  architecture: standalone
+
