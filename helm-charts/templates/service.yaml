@@ -1,30 +1,48 @@
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    name: zk-operator
-  name: zk-operator-service
-spec:
-  type: ClusterIP
-  selector:
-    app.kubernetes.io/name: zk-operator
-  ports:
-  - name: web
-    port: 8472
-    targetPort: 8472
-
 ---
-
 apiVersion: v1
 kind: Service
 metadata:
   labels:
     name: zk-operator-inject
   name: zk-operator-inject
+  namespace: zk-client
 spec:
   ports:
-    - port: 443
-      targetPort: 8473
-      name: zk-webhook
+  - name: zk-webhook
+    port: 443
+    targetPort: 8473
   selector:
-    app.kubernetes.io/name: zk-operator
+    app: zk-operator
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    control-plane: controller-manager
+  name: zk-operator-metrics-service
+  namespace: zk-client
+spec:
+  ports:
+  - name: https
+    port: 8443
+    protocol: TCP
+    targetPort: https
+  selector:
+    control-plane: controller-manager
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: zk-operator
+  name: zk-operator-service
+  namespace: zk-client
+spec:
+  ports:
+  - name: web
+    port: 8472
+    targetPort: 8472
+  selector:
+    app: zk-operator
+  type: ClusterIP
+---
