@@ -30,4 +30,4 @@ dependencies:
     condition: zk-scenario-manager.enabled
   - name : redis
     condition: redis.enabled
-    repository: repository: https://charts.bitnami.com/bitnami
+    repository: https://charts.bitnami.com/bitnami
