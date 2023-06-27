@@ -9,3 +9,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: zk-operator
+  namespace: zk-client
