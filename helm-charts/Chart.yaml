@@ -25,10 +25,10 @@ appVersion: "1.16.0"
 
 dependencies:
   - name: zk-daemonset
-    condition: zk-daemonset.enabled
+    condition: global.zk-daemonset.enabled
     version: "0.1.0"
   - name: zk-scenario-manager
-    condition: zk-scenario-manager.enabled
+    condition: global.zk-scenario-manager.enabled
     version: "0.1.0"
   - name : redis
     condition: redis.enabled

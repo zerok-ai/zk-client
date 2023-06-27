@@ -13,13 +13,12 @@ global:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-daemonset"
     tag: "4163e639a976ce18f3c18b208c9be181a82b61cd"
-  redis:
-    enabled: true
-    architecture: "standalone"
   image:
     pullPolicy: IfNotPresent
 
-
+redis:
+  enabled: true
+  architecture: "standalone"
 
 replicaCount: 1
 
