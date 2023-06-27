@@ -25,7 +25,8 @@ redis:
   nameOverride: redis
   auth:
     enabled: false
-
+  image:
+    tag: "6.2.12-debian-11-r23"
 
 replicaCount: 1
 
