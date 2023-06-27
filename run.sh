@@ -19,13 +19,13 @@ then
   exit 1
 fi
 
-echo "checking kube api connectivity"
-if ! kubectl cluster-info; then
-    echo "Unable to connect to kube api. ERR #3"
-    exit 1
-else
-    echo "kube api reachable"
-fi
+#echo "checking kube api connectivity"
+#if ! kubectl cluster-info; then
+#    echo "Unable to connect to kube api. ERR #3"
+#    exit 1
+#else
+#    echo "kube api reachable"
+#fi
 
 
 echo "checking helm binary"
