@@ -31,7 +31,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.global.zk-daemonset.repo }}:{{ .Values.global.zk-daemonset.tag }}"
+          image: "{{ index .Values "global" "zk-daemonset" "repo" }}:{{ .index .Values "global" "zzk-daemonset" "tag"  }}"
           imagePullPolicy: {{ .Values.global.image.pullPolicy }}
           ports:
             - name: http

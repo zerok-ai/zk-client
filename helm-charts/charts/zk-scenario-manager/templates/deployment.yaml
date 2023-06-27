@@ -31,7 +31,7 @@ spec:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ .Values.global.zk-scenario-manager.repo }}:{{ .Values.global.zk-scenario-manager.tag }}"
+          image: "{{ index .Values "global" "zk-scenario-manager" "repo" }}:{{ .index .Values "global" "zk-scenario-manager" "tag"  }}"
           imagePullPolicy: {{ .Values.global.image.pullPolicy }}
           ports:
             - name: http
