@@ -59,6 +59,6 @@ helm dependency update helm-charts
  --set=global.data.cluster_key=$cluster_key \
  --set=global.data.PX_API_KEY=$PX_API_KEY \
  upgrade $APP_NAME \
-  -f ./helm-charts/$ENV.yaml ./helm-charts/ \
+ ./helm-charts/ \
   --create-namespace \
   --namespace zk-client 
