@@ -58,5 +58,6 @@ echo "installing zk-client"
 helm dependency update helm-charts
 helm --install  --set=global.data.cluster_key=$cluster_key --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME ./helm-charts/ --create-namespace --namespace zk-client 
 echo "installing pixie"
+rm -rf .cache/helm/repository ||true
 helm --install --set=deployKey=$PX_API_KEY --set=clusterName=$PX_CLUSTER_NAME  upgrade pixie https://pixie-operator-charts.storage.googleapis.com/  --namespace pl --create-namespace
 
