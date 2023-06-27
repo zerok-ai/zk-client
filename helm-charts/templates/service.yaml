@@ -1,15 +1,30 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "zerok-cli.fullname" . }}
   labels:
-    {{- include "zerok-cli.labels" . | nindent 4 }}
+    name: zk-operator
+  name: zk-operator-service
 spec:
-  type: {{ .Values.service.type }}
-  ports:
-    - port: {{ .Values.service.port }}
-      targetPort: http
-      protocol: TCP
-      name: http
+  type: ClusterIP
   selector:
-    {{- include "zerok-cli.selectorLabels" . | nindent 4 }}
+    app.kubernetes.io/name: zk-operator
+  ports:
+  - name: web
+    port: 8472
+    targetPort: 8472
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    name: zk-operator-inject
+  name: zk-operator-inject
+spec:
+  ports:
+    - port: 443
+      targetPort: 8473
+      name: zk-webhook
+  selector:
+    app.kubernetes.io/name: zk-operator

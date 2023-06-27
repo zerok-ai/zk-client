@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 global:
-  zerok-cli:
+  zk-operator:
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-operator"
     tag: "4163e639a976ce18f3c18b208c9be181a82b61cd"  
   zk-scenario-manager:
@@ -34,12 +34,12 @@ fullnameOverride: ""
 
 serviceAccount:
   # Specifies whether a service account should be created
-  create: true
+  create: false
   # Annotations to add to the service account
   annotations: {}
   # The name of the service account to use.
   # If not set and create is true, a name is generated using the fullname template
-  name: ""
+  name: "zk-operator"
 
 podAnnotations: {}
 
@@ -56,7 +56,7 @@ securityContext: {}
 
 service:
   type: ClusterIP
-  port: 80
+  port: 8472
 
 ingress:
   enabled: false
@@ -75,17 +75,18 @@ ingress:
   #    hosts:
   #      - chart-example.local
 
-resources: {}
+resources: 
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
   # resources, such as Minikube. If you do want to specify resources, uncomment the following
   # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  # limits:
-  #   cpu: 100m
-  #   memory: 128Mi
-  # requests:
-  #   cpu: 100m
-  #   memory: 128Mi
+
+    limits:
+      cpu: 500m
+      memory: 128Mi
+    requests:
+      cpu: 10m
+      memory: 64Mi
 
 autoscaling:
   enabled: false
