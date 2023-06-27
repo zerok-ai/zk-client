@@ -3,8 +3,8 @@
 # Declare variables to be passed into your templates.
 global:
   zerok-cli:
-    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zerok-cli"
-    tag: "latest"  
+    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-operator"
+    tag: "4163e639a976ce18f3c18b208c9be181a82b61cd"  
   zk-scenario-manager:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-scenario-manager"
@@ -12,7 +12,7 @@ global:
   zk-daemonset:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-daemonset"
-    tag: "4163e639a976ce18f3c18b208c9be181a82b61cd"
+    tag: "bd29f4184a68575838709c285201b6e88e0dc1b2"
   image:
     pullPolicy: IfNotPresent
 
