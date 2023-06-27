@@ -1,61 +1,40 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "zk-scenario-manager.fullname" . }}
   labels:
-    {{- include "zk-scenario-manager.labels" . | nindent 4 }}
+    app: zk-scenario-manager
+  name: zk-scenario-manager
+  namespace: zk-client
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
+  replicas: 1
   selector:
     matchLabels:
-      {{- include "zk-scenario-manager.selectorLabels" . | nindent 6 }}
+      app: zk-scenario-manager
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
-        {{- include "zk-scenario-manager.selectorLabels" . | nindent 8 }}
+        app: zk-scenario-manager
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "zk-scenario-manager.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ index .Values "global" "zk-scenario-manager" "repo" }}:{{ index .Values "global" "zk-scenario-manager" "tag"  }}"
-          imagePullPolicy: {{ .Values.global.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      - image: "{{ index .Values "global" "zk-scenario-manager" "repo" }}:{{ index .Values "global" "zk-scenario-manager" "tag"  }}"
+        imagePullPolicy: {{ .Values.global.image.pullPolicy }}
+        name: zk-scenario-manager
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 80
+          successThreshold: 3
+        resources:
+          limits:
+            cpu: 200m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 64Mi
+        volumeMounts:
+        - mountPath: /zk/config
+          name: config
+      volumes:
+      - configMap:
+          name: zk-scenario-manager
+        name: config

@@ -1,61 +1,46 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: DaemonSet
 metadata:
-  name: {{ include "zk-daemonset.fullname" . }}
   labels:
-    {{- include "zk-daemonset.labels" . | nindent 4 }}
+    app: zk-daemonset
+  name: zk-daemonset
+  namespace: zk-client
 spec:
-  {{- if not .Values.autoscaling.enabled }}
-  replicas: {{ .Values.replicaCount }}
-  {{- end }}
   selector:
     matchLabels:
-      {{- include "zk-daemonset.selectorLabels" . | nindent 6 }}
+      app: zk-daemonset
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
-        {{- include "zk-daemonset.selectorLabels" . | nindent 8 }}
+        app: zk-daemonset
+      name: zk-daemonset
     spec:
-      {{- with .Values.imagePullSecrets }}
-      imagePullSecrets:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      serviceAccountName: {{ include "zk-daemonset.serviceAccountName" . }}
-      securityContext:
-        {{- toYaml .Values.podSecurityContext | nindent 8 }}
       containers:
-        - name: {{ .Chart.Name }}
-          securityContext:
-            {{- toYaml .Values.securityContext | nindent 12 }}
-          image: "{{ index .Values "global" "zk-daemonset" "repo" }}:{{ index .Values "global" "zk-daemonset" "tag"  }}"
-          imagePullPolicy: {{ .Values.global.image.pullPolicy }}
-          ports:
-            - name: http
-              containerPort: 80
-              protocol: TCP
-          livenessProbe:
-            httpGet:
-              path: /
-              port: http
-          readinessProbe:
-            httpGet:
-              path: /
-              port: http
-          resources:
-            {{- toYaml .Values.resources | nindent 12 }}
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.affinity }}
-      affinity:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
-      {{- with .Values.tolerations }}
-      tolerations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+      - env:
+        - name: MY_NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        image: "{{ index .Values "global" "zk-daemonset" "repo" }}:{{ index .Values "global" "zk-daemonset" "tag"  }}"
+        imagePullPolicy: {{ .Values.global.image.pullPolicy }}
+        name: zk-daemonset
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 250m
+            memory: 64Mi
+        securityContext:
+          capabilities:
+            add:
+            - SYS_PTRACE
+        volumeMounts:
+        - mountPath: /zk/config
+          name: daemonset-config
+      hostPID: true
+      serviceAccountName: zk-daemonset
+      volumes:
+      - configMap:
+          name: zk-daemonset
+        name: daemonset-config
