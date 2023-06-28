@@ -8,7 +8,7 @@ global:
   zk-scenario-manager:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-scenario-manager"
-    tag: "ead01cedc1f6bcb77d07d17e5e4c424593c4d96d"
+    tag: "fa86f1f4740138c3861ff38261a47e6dbc025434"
   zk-daemonset:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-daemonset"
