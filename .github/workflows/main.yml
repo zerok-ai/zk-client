@@ -15,6 +15,8 @@ env:
   APP_NAME : zerok-cli
   PX_API_KEY: ${{ secrets.PX_API_KEY }}
   PX_CLUSTER_NAME: ${{ vars.PX_CLUSTER_NAME }}
+  PX_DEPLOYMENT_KEY: ${{ secrets.PX_DEPLOYMENT_KEY }}
+
   
 jobs:
   deploy:
@@ -53,4 +55,4 @@ jobs:
 
       - name: Deploy
         run: |-
-            ./run.sh PX_CLUSTER_NAME=$PX_CLUSTER_NAME PX_API_KEY=$PX_API_KEY
+            ./run.sh PX_CLUSTER_NAME=$PX_CLUSTER_NAME PX_API_KEY=$PX_API_KEY PX_DEPLOYMENT_KEY=$PX_DEPLOYMENT_KEY
