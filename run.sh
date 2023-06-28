@@ -13,7 +13,7 @@ do
 shift
 done
 
-if [ -z "$PX_API_KEY" ] || [ -z "$PX_CLUSTER_NAME" ]
+if [ -z "$PX_API_KEY" ] || [ -z "$PX_CLUSTER_NAME" ] || [ -z "$PX_DEPLOYMENT_KEY" ]
 then
   echo "Invalid cli arguments. ERR #2"
   exit 1
