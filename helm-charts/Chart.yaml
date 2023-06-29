@@ -24,13 +24,18 @@ version: 0.1.0
 appVersion: "1.16.0"
 
 dependencies:
+  - name : postgresql
+    condition: postgresql.enabled
+    version: 12.6.0
+    repository: https://charts.bitnami.com/bitnami
+  - name : redis
+    condition: redis.enabled
+    version: 17.11.6
+    repository: https://charts.bitnami.com/bitnami
+
   - name: zk-daemonset
     condition: global.zk-daemonset.enabled
     version: "0.1.0"
   - name: zk-scenario-manager
     condition: global.zk-scenario-manager.enabled
     version: "0.1.0"
-  - name : redis
-    condition: redis.enabled
-    version: 17.11.6
-    repository: https://charts.bitnami.com/bitnami
