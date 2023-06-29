@@ -28,6 +28,19 @@ redis:
   image:
     tag: "6.2.12-debian-11-r23"
 
+postgres:
+  enabled: true
+  architecture: "standalone"
+  nameOverride: postgres
+  global:
+    postgresql:
+      postgresqlUsername: postgres
+      postgresqlPassword: eo1Mgtm6HI
+  initdbScripts:
+    schema_setup.sh : |
+       CREATE DATABASE pl;
+
+
 replicaCount: 1
 
 
