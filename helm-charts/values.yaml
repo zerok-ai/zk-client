@@ -31,9 +31,10 @@ redis:
 postgresql:
   enabled: true
   architecture: "standalone"
-  auth:
+  global:
     postgresql:
-      postgresPassword: eo1Mgtm6HI
+      auth:
+        postgresPassword: "eo1Mgtm6HI"
   primary:
     initdb: 
        scripts:
