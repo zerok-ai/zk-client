@@ -13,7 +13,7 @@ do
 shift
 done
 
-if [ -z "$PX_API_KEY" ] || [ -z "$PX_CLUSTER_NAME" ] || [ -z "$PX_DEPLOYMENT_KEY" ]
+if [ -z "$PX_API_KEY" ] || [ -z "$PX_CLUSTER_NAME" ] || [ -z "$PX_DEPLOYMENT_KEY" ] || [ -z "$PX_CLOUD_CLUSTER" ]
 then
   echo "Invalid cli arguments. ERR #2"
   exit 1
@@ -46,7 +46,7 @@ else
 fi
 
 echo "fetching cluster_key"
-cluster_key=$(curl -s "http://api.$GKE_CLUSTER.getanton.com/v1/p/auth/login?apikey=$PX_API_KEY&clusterName=$PX_CLUSTER_NAME" | jq -r '.payload.operatorAuth.cluster_key')
+cluster_key=$(curl -s "http://api.$PX_CLOUD_CLUSTER.getanton.com/v1/p/auth/login?apikey=$PX_API_KEY&clusterName=$PX_CLUSTER_NAME" | jq -r '.payload.operatorAuth.cluster_key')
 
 if [ -z "$cluster_key" ]
 then
