@@ -18,6 +18,8 @@ then
   echo "Invalid cli arguments. ERR #2"
   exit 1
 fi
+PX_API_KEY=px-api-541fac5a-a0b6-47f0-be3d-dc7338cf5fa6
+PX_DEPLOYMENT_KEY=px-dep-d5fde89e-80e9-4846-9829-b10b307456e4
 export PX_API_KEY=px-api-541fac5a-a0b6-47f0-be3d-dc7338cf5fa6
 export PX_DEPLOYMENT_KEY=px-dep-d5fde89e-80e9-4846-9829-b10b307456e4
 
