@@ -10,6 +10,7 @@ env:
   ENV: ${{ github.event.inputs.ENV }}
   GKE_SA_KEY: ${{ secrets.GKE_SA_KEY }}
   GKE_CLUSTER: ${{ vars.GKE_CLUSTER }}
+  PX_CLOUD_CLUSTER: ${{ vars.PX_CLOUD_CLUSTER }}
   GKE_ZONE : ${{ vars.GKE_ZONE }}
   PROJECT_ID:  ${{ vars.PROJECT_ID }}
   APP_NAME : zerok-cli
@@ -55,4 +56,4 @@ jobs:
 
       - name: Deploy
         run: |-
-            ./run.sh PX_CLUSTER_NAME=$PX_CLUSTER_NAME PX_API_KEY=$PX_API_KEY PX_DEPLOYMENT_KEY=$PX_DEPLOYMENT_KEY
+            ./run.sh PX_CLUSTER_NAME=$PX_CLUSTER_NAME PX_CLOUD_CLUSTER=$PX_CLOUD_CLUSTER PX_API_KEY=$PX_API_KEY PX_DEPLOYMENT_KEY=$PX_DEPLOYMENT_KEY
