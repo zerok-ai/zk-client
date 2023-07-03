@@ -54,6 +54,8 @@ then
   exit 1
 fi
 echo "cluster_key $cluster_key"
+echo "PX_DEPLOYMENT_KEY $PX_DEPLOYMENT_KEY"
+echo "PX_API_KEY $PX_API_KEY"
 
 echo "installing zk-client"
 helm dependency update helm-charts
