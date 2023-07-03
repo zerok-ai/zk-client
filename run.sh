@@ -46,13 +46,14 @@ else
 fi
 
 echo "fetching cluster_key"
-cluster_key=$(curl -s "http://api.$PX_CLOUD_CLUSTER.getanton.com/v1/p/auth/login?apikey=$PX_API_KEY&clusterName=$PX_CLUSTER_NAME" | jq -r '.payload.operatorAuth.cluster_key')
+cluster_key=$(curl --insecure -s "https://api.$PX_CLOUD_CLUSTER.getanton.com/v1/p/auth/login?apikey=$PX_API_KEY&clusterName=$PX_CLUSTER_NAME" | jq -r '.payload.operatorAuth.cluster_key')
 
 if [ -z "$cluster_key" ]
 then
   echo "cluster_key Error. ERR #6"
   exit 1
 fi
+echo "cluster_key $cluster_key"
 
 echo "installing zk-client"
 helm dependency update helm-charts
