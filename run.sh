@@ -68,5 +68,6 @@ echo "installing pixie"
 helm repo add pixie-operator https://pixie-operator-charts.storage.googleapis.com
 # Get latest information about Pixie chart.
 helm repo update
-helm --install --set=deployKey=$PX_DEPLOYMENT_KEY --set=clusterName=$PX_CLUSTER_NAME  upgrade pixie pixie-operator/pixie-operator-chart  --namespace pl --create-namespace
+# helm --install --set=deployKey=$PX_DEPLOYMENT_KEY --set=clusterName=$PX_CLUSTER_NAME  upgrade pixie pixie-operator/pixie-operator-chart  --namespace pl --create-namespace --set cloudAddr=px.zkcloud03.getanton.com:443 --set registry=us-west1-docker.pkg.dev/zerok-dev/zk-scriber --set version=debug0.0.1
+helm --install --set=deployKey=$PX_DEPLOYMENT_KEY --set=clusterName=$PX_CLUSTER_NAME  upgrade pixie pixie-operator/pixie-operator-chart  --namespace pl --create-namespace --set cloudAddr=px.zkcloud03.getanton.com:443
 
