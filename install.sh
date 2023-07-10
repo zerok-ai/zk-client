@@ -1,4 +1,5 @@
 #!/bin/bash
+THIS_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
 if [ "$#" -eq "0" ]; then
   echo "Invalid cli arguments. ERR #1"
@@ -28,4 +29,4 @@ else
 fi
 
 helm dependency update helm-charts
-helm --install  --set=global.data.cluster_key=$PX_CLUSTER_KEY --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME ./helm-charts/ --create-namespace --namespace zk-client 
+helm --install  --set=global.data.cluster_key=$PX_CLUSTER_KEY --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME $THIS_DIR/helm-charts/ --create-namespace --namespace zk-client
