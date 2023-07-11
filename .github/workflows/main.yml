@@ -32,7 +32,7 @@ jobs:
               helm package helm-charts
       - name: helm index
         run: |-  
-              helm repo index zk-operator --url https://helm.zerok.ai/zk-client/
+              helm repo index  --url https://helm.zerok.ai/zk-client/
       - name: s3 sync
         run: aws s3 cp index.yaml ${{ vars.S3_BUCKET_NAME }}/zk-client/  --exact-timestamps
       - name: Clear CF Cache
