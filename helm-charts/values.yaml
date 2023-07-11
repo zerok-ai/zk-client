@@ -4,7 +4,7 @@
 global:
   zk-operator:
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-operator"
-    tag: "4163e639a976ce18f3c18b208c9be181a82b61cd"  
+    tag: "95dae2fea38b524df1535582b8fbd1d890675023"
   zk-scenario-manager:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-scenario-manager"
