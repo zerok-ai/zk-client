@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "mychart.fullname" . }}-configmap
+  name: {{ include "zk-wsp.fullname" . }}-configmap
   labels:
-  {{- include "mychart.labels" . | nindent 4 }}
+  {{- include "zk-wsp.labels" . | nindent 4 }}
 data:
   wsp-config.yaml: |-
     host: localhost
     port : 8987
     timeout : 3000
     target:
-      url: "ws://api.{{ .Values.router.ZK_DOMAIN }}:80/register"
+      url: "wss://api.{{ .Values.routes.zkCloudAddr }}:443/register"
       clusterSecretName: cluster-info
       clusterKeyData: clusterKey
       clusterKeyNamespace: zk-client

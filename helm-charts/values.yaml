@@ -15,13 +15,17 @@ global:
     tag: "bd29f4184a68575838709c285201b6e88e0dc1b2"
   zk-wsp:
     enabled: true
-    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-wsp"
-    tag: "bd29f4184a68575838709c285201b6e88e0dc1b2"
+    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-wsp-client"
+    tag: "227159157a370c39c51db23d9649956aa26ca79f"
   image:
     pullPolicy: Always
   data:
     PX_API_KEY: ""
     cluster_key: ""
+
+zk-wsp:
+  routes:
+    zkCloudAddr: "loadcloud01.getanton.com"
 
 redis:
   enabled: true

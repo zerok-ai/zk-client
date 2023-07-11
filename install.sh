@@ -14,7 +14,7 @@ do
 shift
 done
 
-if [ -z "$PX_API_KEY" ] || [ -z "$PX_CLUSTER_KEY" ]
+if [ -z "$PX_API_KEY" ] || [ -z "$PX_CLUSTER_KEY" ] || [ -z "$ZK_CLOUD_ADDR" ]
 then
   echo "Invalid cli arguments. ERR #2"
   exit 1
@@ -29,4 +29,4 @@ else
 fi
 
 helm dependency update $THIS_DIR/helm-charts
-helm --install  --set=global.data.cluster_key=$PX_CLUSTER_KEY --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME $THIS_DIR/helm-charts/ --create-namespace --namespace zk-client
+helm --install --set=zk-wsp.routes.zkCloudAddr=$ZK_CLOUD_ADDR --set=global.data.cluster_key=$PX_CLUSTER_KEY --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME $THIS_DIR/helm-charts/ --create-namespace --namespace zk-client
