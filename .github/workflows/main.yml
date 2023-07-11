@@ -36,8 +36,8 @@ jobs:
       - name: s3 sync
         run: |-
              ls -alh
-             aws s3 cp index.yaml ${{ vars.S3_BUCKET_NAME }}/zk-client/  --exact-timestamps
-             aws s3 cp *.tgz ${{ vars.S3_BUCKET_NAME }}/zk-client/  --exact-timestamps
+             aws s3 cp index.yaml ${{ vars.S3_BUCKET_NAME }}/zk-client/  
+             aws s3 cp *.tgz ${{ vars.S3_BUCKET_NAME }}/zk-client/ 
 
       - name: Clear CF Cache
         run: aws cloudfront create-invalidation --distribution-id ${{ vars.CF_DIST_ID }} --paths "/*"
