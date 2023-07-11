@@ -2,7 +2,7 @@ apiVersion: v1
 data:
   config.yaml: |
     redis:
-      host: zerok-cli-redis-master.zk-client.svc.cluster.local
+      host: redis-master.zk-client.svc.cluster.local
       port: 6379
       readTimeout: 20
       dbs:
@@ -10,7 +10,7 @@ data:
         otel: 3
         scenarios: 6
     postgres:
-      host: zerok-cli-postgresql.zk-client.svc.cluster.local
+      host: postgres.zk-client.svc.cluster.local
       port: 5432
       user: postgres
       password: eo1Mgtm6HI

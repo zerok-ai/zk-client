@@ -38,6 +38,7 @@ redis:
   enabled: true
   architecture: "standalone"
   nameOverride: redis
+  fullnameOverride: redis
   auth:
     enabled: false
   image:
@@ -46,6 +47,8 @@ redis:
 postgresql:
   enabled: true
   architecture: "standalone"
+  nameOverride: postgres
+  fullnameOverride: postgres
   global:
     postgresql:
       auth:
