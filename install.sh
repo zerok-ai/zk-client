@@ -28,5 +28,5 @@ else
     echo "helm binary found."
 fi
 
-helm dependency update helm-charts
+helm dependency update $THIS_DIR/helm-charts
 helm --install  --set=global.data.cluster_key=$PX_CLUSTER_KEY --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME $THIS_DIR/helm-charts/ --create-namespace --namespace zk-client
