@@ -35,6 +35,7 @@ jobs:
               helm repo index ./ --url https://helm.zerok.ai/zk-client/
       - name: s3 sync
         run: |-
+             ls -alh
              aws s3 sync index.yaml ${{ vars.S3_BUCKET_NAME }}/zk-client/  --exact-timestamps
              aws s3 sync *.tgz ${{ vars.S3_BUCKET_NAME }}/zk-client/  --exact-timestamps
 
