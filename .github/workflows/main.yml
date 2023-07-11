@@ -1,59 +1,40 @@
-name: deploy
+name: CICD/poc
 on:
   workflow_dispatch:
-     inputs:
-        ENV:
-            description: 'ENV'
-            required: true
-            default: 'poc'
-env:
-  ENV: ${{ github.event.inputs.ENV }}
-  GKE_SA_KEY: ${{ secrets.GKE_SA_KEY }}
-  GKE_CLUSTER: ${{ vars.GKE_CLUSTER }}
-  PX_CLOUD_CLUSTER: ${{ vars.PX_CLOUD_CLUSTER }}
-  GKE_ZONE : ${{ vars.GKE_ZONE }}
-  PROJECT_ID:  ${{ vars.PROJECT_ID }}
-  APP_NAME : zerok-cli
-  PX_API_KEY: ${{ secrets.PX_API_KEY }}
-  PX_CLUSTER_NAME: ${{ vars.PX_CLUSTER_NAME }}
-  PX_DEPLOYMENT_KEY: ${{ secrets.PX_DEPLOYMENT_KEY }}
-
-  
-jobs:
+jobs:          
   deploy:
-    environment: ${{ github.event.inputs.ENV }}
     runs-on: self-hosted
+    environment: poc
     steps:
       - name: Checkout
-        uses: actions/checkout@v3 
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v0'
+        uses: actions/checkout@v3
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
         with:
-          credentials_json: '${{ env.GKE_SA_KEY }}'
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+      - name: install-aws-cli
+        id: install-aws-cli
+        uses: unfor19/install-aws-cli-action@master
         
 
-      - uses: google-github-actions/setup-gcloud@v0
-        with:
-          version: latest
-          export_default_credentials: true
-      
-
-      - id: 'get-credentials'
-        uses: 'google-github-actions/get-gke-credentials@v1'
-        with:
-           cluster_name: '${{ env.GKE_CLUSTER }}'
-           location: '${{ env.GKE_ZONE }}'
-
-   
-      
       - name: Set up helm
         run: |-
            curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
            chmod 700 get_helm.sh
            ./get_helm.sh
-  
-
-      - name: Deploy
-        run: |-
-            ./run.sh PX_CLUSTER_NAME=$PX_CLUSTER_NAME PX_CLOUD_CLUSTER=$PX_CLOUD_CLUSTER PX_API_KEY=$PX_API_KEY PX_DEPLOYMENT_KEY=$PX_DEPLOYMENT_KEY
+      - name: s3 sync index.yaml
+        run: aws s3 cp  ${{ vars.S3_BUCKET_NAME }}/zk-client/index.yaml index.yaml 
+      - name: helm package
+        run: |-  
+              helm package zk-client helm-charts/
+      - name: helm index
+        run: |-  
+              helm repo index zk-client --url https://helm.zerok.ai/zk-client/
+      - name: s3 sync
+        run: aws s3 cp index.yaml ${{ vars.S3_BUCKET_NAME }}/zk-client/  --exact-timestamps
+      - name: Clear CF Cache
+        run: aws cloudfront create-invalidation --distribution-id ${{ vars.CF_DIST_ID }} --paths "/*"
+          
+     
