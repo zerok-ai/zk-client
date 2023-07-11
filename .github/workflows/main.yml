@@ -24,8 +24,8 @@ jobs:
            curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3
            chmod 700 get_helm.sh
            ./get_helm.sh
-      - name: s3 sync index.yaml
-        run: aws s3 cp  ${{ vars.S3_BUCKET_NAME }}/zk-client/index.yaml index.yaml ||true
+      - name: s3 sync repo
+        run: aws s3 sync  ${{ vars.S3_BUCKET_NAME }}/zk-client/  .
       - name: helm package
         run: |-  
               helm dependency update helm-charts
@@ -35,7 +35,6 @@ jobs:
               helm repo index ./ --url https://helm.zerok.ai/zk-client/
       - name: s3 sync
         run: |-
-             ls -alh
              aws s3 cp index.yaml ${{ vars.S3_BUCKET_NAME }}/zk-client/  
              aws s3 cp *.tgz ${{ vars.S3_BUCKET_NAME }}/zk-client/ 
 
