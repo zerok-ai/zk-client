@@ -17,6 +17,10 @@ global:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-wsp-client"
     tag: "227159157a370c39c51db23d9649956aa26ca79f"
+  zk-axon:
+    enabled: true
+    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-axon"
+    tag: "414f71f8ac5640b653407cf748ff3944a8bd88ad"
   image:
     pullPolicy: Always
   zkcloud:
