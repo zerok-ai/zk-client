@@ -35,8 +35,7 @@ jobs:
               helm repo index ./ --url https://helm.zerok.ai/zk-client/
       - name: s3 sync
         run: |-
-             aws s3 cp index.yaml ${{ vars.S3_BUCKET_NAME }}/zk-client/ 
-             aws s3 cp *.tgz ${{ vars.S3_BUCKET_NAME }}/zk-client/
+             aws s3 cp . ${{ vars.S3_BUCKET_NAME }}/zk-client/  --recursive --exclude "*" --include "index.yaml"  --include "*.tgz" --exclude "*/*"
 
       - name: Clear CF Cache
         run: aws cloudfront create-invalidation --distribution-id ${{ vars.CF_DIST_ID }} --paths "/*"
