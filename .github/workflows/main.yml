@@ -1,4 +1,4 @@
-name: CICD/poc
+name: helm-publish
 on:
   workflow_dispatch:
 jobs:          
