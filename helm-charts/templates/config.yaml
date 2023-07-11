@@ -19,7 +19,7 @@ data:
       exceptionPath: /exception
       clusterContextPath: /i/clusterContext
     zkcloud:
-      host: "api.{{ .Values.global.zkcloud.host }}.getanton.com"
+      host: "api.{{ .Values.global.zkcloud.host }}"
       port: {{ .Values.global.zkcloud.port }}
     scenarioSync:
       path: /v1/o/cluster/scenario
@@ -27,8 +27,9 @@ data:
       db: 6
     operatorLogin:
       path: /v1/o/auth/login
-      clusterKeySecret: cluster-info
+      clusterSecretName: cluster-info
       clusterKeyData: clusterKey
+      apiKeyData: apiKey
       clusterKeyNamespace: zk-client
       maxRetries: 3
     initContainer:
