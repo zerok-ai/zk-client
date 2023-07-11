@@ -19,6 +19,8 @@ spec:
       - image: "{{ index .Values "global" "zk-scenario-manager" "repo" }}:{{ index .Values "global" "zk-scenario-manager" "tag"  }}"
         imagePullPolicy: {{ .Values.global.image.pullPolicy }}
         name: zk-scenario-manager
+        ports:
+          - containerPort: 80
         readinessProbe:
           httpGet:
             path: /healthz

@@ -15,6 +15,11 @@ data:
       user: postgres
       password: eo1Mgtm6HI
       dbname: pl
+    server:
+      host: 0.0.0.0
+      port: 80
+    scenarioConfig:
+      redisRuleSetCount: 12
 kind: ConfigMap
 metadata:
   labels:
