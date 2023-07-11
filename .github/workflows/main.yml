@@ -28,7 +28,8 @@ jobs:
         run: aws s3 cp  ${{ vars.S3_BUCKET_NAME }}/zk-client/index.yaml index.yaml ||true
       - name: helm package
         run: |-  
-              helm package ./helm-charts
+              helm dependency update helm-charts
+              helm package helm-charts
       - name: helm index
         run: |-  
               helm repo index zk-operator --url https://helm.zerok.ai/zk-client/
