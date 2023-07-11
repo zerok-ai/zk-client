@@ -1,3 +1,7 @@
+global:
+  zkcloud:
+    host: ""
+    port:
 routes:
   zkCloudAddr: ""
 deployment:

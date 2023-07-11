@@ -19,8 +19,8 @@ data:
       exceptionPath: /exception
       clusterContextPath: /i/clusterContext
     zkcloud:
-      host: api.avinpx07.getanton.com
-      port: 80
+      host: "api.{{ .Values.global.zkcloud.host }}.getanton.com"
+      port: {{ .Values.global.zkcloud.port }}
     scenarioSync:
       path: /v1/o/cluster/scenario
       pollingInterval: 300

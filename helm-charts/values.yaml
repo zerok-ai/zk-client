@@ -19,6 +19,9 @@ global:
     tag: "227159157a370c39c51db23d9649956aa26ca79f"
   image:
     pullPolicy: Always
+  zkcloud:
+    host: ""
+    port: 443
   data:
     PX_API_KEY: ""
     cluster_key: ""

@@ -29,4 +29,4 @@ else
 fi
 
 helm dependency update $THIS_DIR/helm-charts
-helm --install --set=zk-wsp.routes.zkCloudAddr=$ZK_CLOUD_ADDR --set=global.data.cluster_key=$PX_CLUSTER_KEY --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME $THIS_DIR/helm-charts/ --create-namespace --namespace zk-client
+helm --install --set=global.zkcloud.host=$ZK_CLOUD_ADDR --set=global.data.cluster_key=$PX_CLUSTER_KEY --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME $THIS_DIR/helm-charts/ --create-namespace --namespace zk-client
