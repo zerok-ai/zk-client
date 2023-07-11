@@ -58,8 +58,9 @@ echo "PX_DEPLOYMENT_KEY $PX_DEPLOYMENT_KEY"
 echo "PX_API_KEY $PX_API_KEY"
 
 echo "installing zk-client"
-helm dependency update helm-charts
-helm --install  --set=global.data.cluster_key=$cluster_key --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME ./helm-charts/ --create-namespace --namespace zk-client 
+helm repo add zk-client https://helm.zerok.ai/zk-client
+helm repo update
+helm --install  --set=global.data.cluster_key=$cluster_key --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME zk-client/zk-operator --create-namespace --namespace zk-client 
 echo "installing pixie"
 helm repo add pixie-operator https://pixie-operator-charts.storage.googleapis.com
 # Get latest information about Pixie chart.
