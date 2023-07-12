@@ -19,7 +19,7 @@ kind: Service
 metadata:
   labels:
     control-plane: controller-manager
-  name: zk-operator-metrics-service
+  name: zk-operator-metrics
   namespace: zk-client
 spec:
   ports:
@@ -35,7 +35,7 @@ kind: Service
 metadata:
   labels:
     name: zk-operator
-  name: zk-operator-service
+  name: zk-operator
   namespace: zk-client
 spec:
   ports:

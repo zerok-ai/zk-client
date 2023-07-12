@@ -4,19 +4,19 @@
 global:
   zk-operator:
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-operator"
-    tag: "95dae2fea38b524df1535582b8fbd1d890675023"
+    tag: "e91661f56558624f54797a1806f8a74f511094b2"
   zk-scenario-manager:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-scenario-manager"
-    tag: "fa86f1f4740138c3861ff38261a47e6dbc025434"
+    tag: "ce411e8d7458af816150c3d31906a95c0634d99d"
   zk-daemonset:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-daemonset"
-    tag: "bd29f4184a68575838709c285201b6e88e0dc1b2"
+    tag: "253beee4667a297bbad907283e7495b695bf4cab"
   zk-wsp:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-wsp-client"
-    tag: "227159157a370c39c51db23d9649956aa26ca79f"
+    tag: "28d46e347cb3ab5d7ed8cef8904a4bac1b2b3a7c"
   zk-axon:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-axon"
