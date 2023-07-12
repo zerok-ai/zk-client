@@ -26,6 +26,12 @@ CREATE TABLE IF NOT EXISTS scenario_version (
     created_at           BIGINT
 );
 
+INSERT INTO scenario (cluster_id, scenario_title, scenario_type, is_default)
+VALUES ('Zk_default_cluster_id_for_all_scenarios', 'error', 'ERROR', true);
+
+INSERT INTO scenario (cluster_id, scenario_title, scenario_type, is_default)
+VALUES ('Zk_default_cluster_id_for_all_scenarios', 'exception_title', 'EXCEPTION', true);
+
 INSERT INTO scenario_version (scenario_id, scenario_data, schema_version, scenario_version, created_by, created_at)
 VALUES (1, '{"version":"1684149787","workloads":{"55661a0e-25cb-5a1c-94cd-fad172b0caa2":{"service":"*/*","trace_role":"server","protocol":"HTTP","rule":{"type":"rule_group","condition":"AND","rules":[{"type":"rule","id":"req_method","field":"req_method","datatype":"string","input":"string","operator":"equal","value":"POST"},{"type":"rule","id":"req_path","field":"req_path","datatype":"string","input":"string","operator":"equal","value":"/exception"}]}}},"scenario_id":"1","filter":{"type":"workload","condition":"AND","workload_ids":["55661a0e-25cb-5a1c-94cd-fad172b0caa2"]},"group_by":[{"workload_id": "55661a0e-25cb-5a1c-94cd-fad172b0caa2","title":"destination","hash":"destination"}]}', 'v1', 1687763051, 'vaibhav ', 1687763051);
 
