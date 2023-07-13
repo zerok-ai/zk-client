@@ -40,7 +40,7 @@ metadata:
 spec:
   ports:
   - name: web
-    port: 8472
+    port: 80
     targetPort: 8472
   selector:
     app: zk-operator

@@ -20,6 +20,7 @@ data:
       port: 80
     scenarioConfig:
       redisRuleSetCount: 12
+      processingIntervalInSeconds: 300
 kind: ConfigMap
 metadata:
   labels:
