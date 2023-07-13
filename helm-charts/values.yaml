@@ -26,6 +26,8 @@ global:
   zkcloud:
     host: ""
     port: 443
+  vizier:
+    tag: ""
   data:
     PX_API_KEY: ""
     cluster_key: ""

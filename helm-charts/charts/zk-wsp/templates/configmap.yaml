@@ -15,5 +15,5 @@ data:
       clusterKeyData: clusterKey
       clusterKeyNamespace: zk-client
       maxRetries: 3
-    poolidlesize: 5
-    poolmaxsize: 100
+    poolIdleSize: 5
+    poolMaxSize: 100

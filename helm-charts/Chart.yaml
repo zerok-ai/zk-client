@@ -46,3 +46,6 @@ dependencies:
   - name: zk-axon
     condition: global.zk-axon.enabled
     version: "0.1.0"
+#  - name: vizier
+#    condition: global.vizier.enabled
+#    version: "0.1.0"
