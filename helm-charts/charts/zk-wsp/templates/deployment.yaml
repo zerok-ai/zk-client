@@ -24,7 +24,7 @@ spec:
         imagePullPolicy: {{ .Values.deployment.zkWspClient.imagePullPolicy }}
         name: zk-wsp-client
         ports:
-        - containerPort: 8981
+        - containerPort: 8987
         resources: {}
         volumeMounts:
         - mountPath: /opt

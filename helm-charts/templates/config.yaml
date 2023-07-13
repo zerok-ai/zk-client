@@ -17,7 +17,10 @@ data:
     http:
       port: 8472
       exceptionPath: /exception
-      clusterContextPath: /i/clusterContext
+    clusterContext:
+      path: /i/clusterContext
+      cloudAddr: "px.{{ .Values.global.zkcloud.host }}"
+      port: 443
     zkcloud:
       host: "api.{{ .Values.global.zkcloud.host }}"
       port: {{ .Values.global.zkcloud.port }}
