@@ -19,6 +19,13 @@ spec:
         app: zk-operator
         control-plane: controller-manager
     spec:
+      initContainers:
+        - name: init-container
+          image: "{{ index .Values "global" "zk-init-operator" "repo" }}:{{ index .Values "global" "zk-operator" "tag"  }}"
+          imagePullPolicy: Always
+          env:
+            - name: URL
+              value: "http://zk-wsp-client.zk-client.svc.cluster.local:8987/status"
       containers:
       - args:
         - --secure-listen-address=0.0.0.0:8443
@@ -95,5 +102,5 @@ spec:
       terminationGracePeriodSeconds: 10
       volumes:
       - configMap:
-          name: zk-operator-configmap
+          name: zk-operator
         name: zk-operator-config

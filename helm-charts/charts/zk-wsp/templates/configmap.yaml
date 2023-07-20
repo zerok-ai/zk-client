@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: {{ include "zk-wsp.fullname" . }}-configmap
+  name: {{ include "zk-wsp.fullname" . }}-client
   labels:
   {{- include "zk-wsp.labels" . | nindent 4 }}
 data:
   wsp-config.yaml: |-
-    host: localhost
+    host: 0.0.0.0
     port : 8987
     timeout : 3000
     target:
@@ -17,3 +17,8 @@ data:
       maxRetries: 3
     poolIdleSize: 5
     poolMaxSize: 100
+    maxRetryInterval: 300
+    defaultRetryInterval: 30
+    logs:
+      color: true
+      level: DEBUG
