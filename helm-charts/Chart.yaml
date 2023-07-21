@@ -37,12 +37,14 @@ dependencies:
   - name: zk-daemonset
     condition: global.zk-daemonset.enabled
     version: "0.1.0"
+    repository: https://storage.googleapis.com/zk-helm-charts/zk-daemonset-test
   - name: zk-scenario-manager
     condition: global.zk-scenario-manager.enabled
     version: "0.1.0"
   - name: zk-wsp
     condition: global.zk-wsp.enabled
     version: "0.1.0"
+    repository: https://storage.googleapis.com/zk-helm-charts/zk-wsp-client-test
   - name: zk-axon
     condition: global.zk-axon.enabled
     version: "0.1.0"
