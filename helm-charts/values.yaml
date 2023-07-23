@@ -8,22 +8,6 @@ global:
   zk-operator:
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-operator"
     tag: "latest"
-  zk-scenario-manager:
-    enabled: true
-    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-scenario-manager"
-    tag: "latest"
-  zk-daemonset:
-    enabled: true
-    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-daemonset"
-    tag: "latest"
-  zk-wsp:
-    enabled: true
-    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-wsp-client"
-    tag: "latest"
-  zk-axon:
-    enabled: true
-    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-axon"
-    tag: "latest"
   image:
     pullPolicy: Always
   zkcloud:

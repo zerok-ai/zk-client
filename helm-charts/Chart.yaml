@@ -34,20 +34,22 @@ dependencies:
     version: 17.11.6
     repository: https://charts.bitnami.com/bitnami
 
-  - name: zk-daemonset-test
+  - name: zk-daemonset
     condition: global.zk-daemonset.enabled
     version: "0.1.0"
     repository: https://storage.googleapis.com/zk-helm-charts
   - name: zk-scenario-manager
     condition: global.zk-scenario-manager.enabled
     version: "0.1.0"
-  - name: zk-wsp-client-test
+    repository: https://storage.googleapis.com/zk-helm-charts
+  - name: zk-wsp-client
     condition: global.zk-wsp.enabled
-    version: "1.0.0"
+    version: "0.1.0"
     repository: https://storage.googleapis.com/zk-helm-charts
   - name: zk-axon
     condition: global.zk-axon.enabled
     version: "0.1.0"
+    repository:  https://storage.googleapis.com/zk-helm-charts
 #  - name: vizier
 #    condition: global.vizier.enabled
 #    version: "0.1.0"

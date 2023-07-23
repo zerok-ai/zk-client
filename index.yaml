@@ -1,14 +1,26 @@
 apiVersion: v1
 entries:
-  zk-daemonset-test:
+  zk-daemonset:
     - created: "2023-07-19T00:00:00Z"
-      name: zk-daemonset-test
+      name: zk-daemonset
       version: 0.1.0
       urls:
-        - https://storage.googleapis.com/zk-helm-charts/zk-daemonset-test/zk-daemonset-0.1.0.tgz
-  zk-wsp-client-test:
+        - https://storage.googleapis.com/zk-helm-charts/zk-daemonset/zk-daemonset-0.1.0.tgz
+  zk-wsp-client:
     - created: "2023-07-19T00:00:00Z"
-      name: zk-wsp-client-test
-      version: 1.0.0
+      name: zk-wsp-client
+      version: 0.1.0
       urls:
-        - https://storage.googleapis.com/zk-helm-charts/zk-wsp-client-test/zk-wsp-client-0.1.0.tgz
+        - https://storage.googleapis.com/zk-helm-charts/zk-wsp-client/zk-wsp-client-0.1.0.tgz
+  zk-axon:
+    - created: "2023-07-19T00:00:00Z"
+      name: zk-axon
+      version: 0.1.0
+      urls:
+        - https://storage.googleapis.com/zk-helm-charts/zk-axon/zk-axon-0.1.0.tgz
+  zk-scenario-manager:
+    - created: "2023-07-19T00:00:00Z"
+      name: zk-scenario-manager
+      version: 0.1.0
+      urls:
+        - https://storage.googleapis.com/zk-helm-charts/zk-scenario-manager/zk-scenario-manager-0.1.0.tgz
