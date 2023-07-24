@@ -21,7 +21,7 @@ spec:
     spec:
       initContainers:
         - name: init-container
-          image: "{{ index .Values "global" "zk-init-operator" "repo" }}:{{ index .Values "global" "zk-operator" "tag"  }}"
+          image: "{{ index .Values "global" "zk-init-container" "repo" }}:{{ index .Values "global" "zk-init-container" "tag"  }}"
           imagePullPolicy: Always
           env:
             - name: URL
