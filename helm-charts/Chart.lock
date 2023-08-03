@@ -1,0 +1,21 @@
+dependencies:
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 12.5.9
+- name: redis
+  repository: https://charts.bitnami.com/bitnami
+  version: 17.11.6
+- name: zk-daemonset
+  repository: https://storage.googleapis.com/zk-helm-charts
+  version: 0.1.0
+- name: zk-scenario-manager
+  repository: https://storage.googleapis.com/zk-helm-charts
+  version: 0.1.0
+- name: zk-wsp-client
+  repository: https://storage.googleapis.com/zk-helm-charts
+  version: 0.1.0
+- name: zk-axon
+  repository: https://storage.googleapis.com/zk-helm-charts
+  version: 0.1.0
+digest: sha256:760ef7d992853a53bbe5ba24899ee7cc46e382d4df6e8c91c91c422c2c20e7d2
+generated: "2023-07-24T08:07:27.71212+05:30"
