@@ -35,6 +35,11 @@ data:
       apiKeyData: apiKey
       clusterKeyNamespace: zk-client
       maxRetries: 3
+    wspClient:
+      host: zk-wsp-client.zk-client.svc.cluster.local
+      port: 8987
+      path: /request
+      destinationHeader: X-PROXY-DESTINATION
     initContainer:
       image: us-west1-docker.pkg.dev/zerok-dev/stage/init-container
       tag: dev
@@ -46,5 +51,5 @@ data:
       level: DEBUG
 kind: ConfigMap
 metadata:
-  name: zk-operator-configmap
+  name: zk-operator
   namespace: zk-client
