@@ -1,5 +1,3 @@
-CREATE DATABASE pl;
-
 CREATE TABLE IF NOT EXISTS issue
 (
     id               SERIAL PRIMARY KEY,
@@ -9,14 +7,21 @@ CREATE TABLE IF NOT EXISTS issue
     scenario_version VARCHAR(255)
 );
 
-CREATE TABLE incident
+
+CREATE TABLE IF NOT EXISTS incident
 (
     id                       SERIAL PRIMARY KEY,
-    issue_hash               VARCHAR(255),
-    trace_id                 VARCHAR(40),
-    incident_collection_time TIMESTAMP,
-    CONSTRAINT unique_issue UNIQUE (issue_hash, trace_id)
+    trace_id                 VARCHAR(255) NOT NULL,
+    issue_hash               VARCHAR(255) NOT NULL,
+    incident_collection_time TIMESTAMP    NOT NULL,
+    entry_service            VARCHAR(255),
+    end_point                VARCHAR(255),
+    protocol                 VARCHAR(255),
+    root_span_time           TIMESTAMP,
+    latency_ns               FLOAT,
+    CONSTRAINT unique_issue  UNIQUE (issue_hash, trace_id)
 );
+
 
 CREATE TABLE IF NOT EXISTS span
 (
@@ -29,12 +34,13 @@ CREATE TABLE IF NOT EXISTS span
     workload_id_list TEXT[],
     status           VARCHAR(255),
     metadata         TEXT,
-    latency_ms       FLOAT,
+    latency_ns       FLOAT,
     protocol         VARCHAR(255),
     issue_hash_list  TEXT[],
     time             TIMESTAMP,
     CONSTRAINT unique_span UNIQUE (trace_id, span_id)
 );
+
 
 CREATE TABLE IF NOT EXISTS span_raw_data
 (

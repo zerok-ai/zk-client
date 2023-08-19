@@ -9,6 +9,8 @@ global:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-scenario-manager"
     tag: "latest"
+    repo-migration: "us-west1-docker.pkg.dev/zerok-dev/zk-client/zk-scenario-manager-migration"
+    tag-migration: "latest"
   zk-daemonset:
     enabled: true
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-daemonset"
@@ -35,6 +37,10 @@ global:
 zk-wsp:
   routes:
     zkCloudAddr: "loadcloud01.getanton.com"
+
+zk-scenario-manager:
+  postgres:
+    password: ""
 
 replicaCount: 1
 

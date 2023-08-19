@@ -4,6 +4,12 @@
 
 replicaCount: 1
 
+postgres:
+  host: "postgres.zk-client.svc.cluster.local"
+  password: ""
+  database: "pl"
+  user: "postgres"
+
 image:
   repository: nginx
   pullPolicy: IfNotPresent

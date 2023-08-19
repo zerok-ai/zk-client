@@ -6,7 +6,7 @@ if [ "$#" -eq "0" ]; then
   exit 1
 fi
 
-while [[ "$#" > "0" ]]
+while [[ "$#" -gt "0" ]]
 do
   case $1 in
     (*=*) eval $1;;
@@ -14,7 +14,7 @@ do
 shift
 done
 
-if [ -z "$PX_API_KEY" ] || [ -z "$PX_CLUSTER_KEY" ] || [ -z "$ZK_CLOUD_ADDR" ]
+if [ -z "$PX_API_KEY" ] || [ -z "$PX_CLUSTER_KEY" ] || [ -z "$ZK_CLOUD_ADDR" ] || [ -z "$ZK_POSTGRES_PASSWORD" ]
 then
   echo "Invalid cli arguments. ERR #2"
   exit 1
@@ -29,4 +29,4 @@ else
 fi
 
 helm dependency update $THIS_DIR/helm-charts
-helm --install --set=global.vizier.tag=$VIZIER_TAG --set=global.zkcloud.host=$ZK_CLOUD_ADDR --set=global.data.cluster_key=$PX_CLUSTER_KEY --set=global.data.PX_API_KEY=$PX_API_KEY upgrade $APP_NAME $THIS_DIR/helm-charts/ --create-namespace --namespace zk-client
+helm --install --set=global.vizier.tag="$VIZIER_TAG" --set=zk-scenario-manager.postgres.password="$ZK_POSTGRES_PASSWORD" --set=global.zkcloud.host="$ZK_CLOUD_ADDR" --set=global.data.cluster_key="$PX_CLUSTER_KEY" --set=global.data.PX_API_KEY="$PX_API_KEY" upgrade "$APP_NAME" "$THIS_DIR"/helm-charts/ --create-namespace --namespace zk-client
