@@ -110,6 +110,7 @@ rules:
   verbs:
   - list
   - delete
+  - watch
 - apiGroups:
   - v1
   - ""
@@ -125,6 +126,7 @@ rules:
   - create
   - get
   - update
+  - delete
 - apiGroups:
   - v1
   - ""

@@ -16,6 +16,7 @@ spec:
         app: zk-wsp-client
       {{- include "zk-wsp.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: {{ include "zk-wsp.fullname" . }}-client
       containers:
       - env:
         - name: KUBERNETES_CLUSTER_DOMAIN
@@ -31,5 +32,5 @@ spec:
           name: wsp-config
       volumes:
       - configMap:
-          name: {{ include "zk-wsp.fullname" . }}-configmap
+          name: {{ include "zk-wsp.fullname" . }}-client
         name: wsp-config

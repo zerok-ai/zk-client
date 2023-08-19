@@ -2,6 +2,9 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 global:
+  zk-init-container:
+    repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-init-container"
+    tag: "dev"
   zk-operator:
     repo: "us-west1-docker.pkg.dev/zerok-dev/zerok-cli/zk-operator"
     tag: "latest"
